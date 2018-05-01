@@ -1,8 +1,3 @@
-//StdOut.java
-
-//Below is the syntax highlighted version of StdOut.java from § Standard Libraries.   Here is the Javadoc.
-
-
 /******************************************************************************
  *  Compilation:  javac StdOut.java
  *  Execution:    java StdOut
@@ -42,7 +37,7 @@ import java.util.Locale;
  *  <p>
  *  <b>Differences with System.out.</b>
  *  The behavior of {@code StdOut} is similar to that of {@link System#out},
- *  but there are a few subtle differences:
+ *  but there are a few technical differences:
  *  <ul>
  *  <li> {@code StdOut} coerces the character-set encoding to UTF-8,
  *       which is a standard character encoding for Unicode.
@@ -88,7 +83,7 @@ public final class StdOut {
 
    /**
      * Closes standard output.
-     * @deprecated Calling close() will permanently disable standard output;
+     * @deprecated Calling close() permanently disables standard output;
      *             subsequent calls to StdOut.println() or System.out.println()
      *             will no longer produce output on standard output.
      */
@@ -325,7 +320,3 @@ public final class StdOut {
     }
 
 }
-
-
-//Copyright © 2000–2017, Robert Sedgewick and Kevin Wayne. 
-//Last updated: Tue Apr 24 06:28:14 EDT 2018.

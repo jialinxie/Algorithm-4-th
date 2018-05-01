@@ -1,8 +1,3 @@
-//StdIn.java
-
-//Below is the syntax highlighted version of StdIn.java from § Standard Libraries.   Here is the Javadoc.
-
-
 /******************************************************************************
  *  Compilation:  javac StdIn.java
  *  Execution:    java StdIn   (interactive test of basic functionality)
@@ -649,7 +644,3 @@ public final class StdIn {
     }
 
 }
-
-
-//Copyright © 2000–2017, Robert Sedgewick and Kevin Wayne. 
-//Last updated: Fri Oct 20 14:12:12 EDT 2017.
