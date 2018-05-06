@@ -1,1 +1,6 @@
-!.java
+*.iml
+*.html
+*.xml
+*.class
+out/
+libs/
