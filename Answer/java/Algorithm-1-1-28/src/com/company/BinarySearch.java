@@ -28,7 +28,9 @@ public class BinarySearch
 	{
 		// read the integers from a file
 		In in = new In(args[0]);
+		int j = 0, i = 0;
 		int[] whitelist = in.readAllInts();
+		Boolean back = false;
 
 		// sort the array
 		Arrays.sort(whitelist);
@@ -41,15 +43,25 @@ public class BinarySearch
 //		}
 
 		//need to use list, need avoid continus same data,like 12 12 12
-		for(int i = 0; i < whitelist.length - 2; i++) {
+		for(i = 0; i < whitelist.length - 1; i++) {
+
+			if(back == true) {
+				back = false;
+				--i;
+			}
 			if (whitelist[i] == whitelist[i + 1]) {
-				//use list-table to remove duplicate data
-				for (int j = i; j < whitelist.length - 2; j++)
-					whitelist[j + 1] = whitelist[j + 2];
+				//suggest to use list to remove duplicate data
+				for (j = i; j < whitelist.length - 1; j++) {
+					whitelist[j] = whitelist[j + 1];
+				}
+				back = true;
+				whitelist[j] = '\0';
 				//whitelist[]
 			}
-			System.out.println(whitelist[i]);
+
 		}
 
+		for(i = 0; whitelist[i] != '\0'; i++)
+			System.out.println(whitelist[i]);
 	}
 }
