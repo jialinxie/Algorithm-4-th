@@ -50,7 +50,7 @@ public class Main {
 
     public static double[] getImplementValue(long N){
         double[] dist = new double[2 * SIDES + 1];
-        System.out.println("N = " + N);
+        System.out.println("getImplementValue N = " + N);
 
         for(int i = 1; i <= N; i++) {
             int b1 = StdRandom.uniform(1, 7);    //input: [a,b)
@@ -92,7 +92,7 @@ public class Main {
 	// write your code here
 
         System.out.println("next line is answer of N:");
-        long N = getMinN(6);
+        long N = getMinN(1000000);
         System.out.println("N = " + N);
     }
 }
