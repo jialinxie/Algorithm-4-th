@@ -2,25 +2,31 @@ package com.company;
 
 import java.util.Scanner;
 /*
-*1.2.11 根据Date的API实现一个SmartDate类型，在日期非法时抛出一个异常。
-1.2.11 Develop an implementation SmartDate of our Date API that raises an
-exception if the date is not legal.
-闰年：2月为29天
-*
-* */
+1.2.12 为SmartDate添加一个方法dayOfTheWeek()，为日期中每周的日返回Monday、Tuesday、Wednesday、Thursday……假定是21世纪
+
+1.2.12 Add a method dayOfTheWeek() to SmartDate that returns a String value Monday, Tuesday, Wednesday, Thursday,
+Friday, Saturday, or Sunday, giving the appropriate day of the week for the date. You may assume that the date
+is in the 21st century.
+
+refer to 蔡勒（Zeller）公式
+*/
 public class Main {
     public static class SmartDate {
         private final int year;
         private final int month;
         private final int day;
         private static final int[] months = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        private static final int[] days = {0, 0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+        private static final int[] daysLeap = {0, 0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335};
+        private static final String[] weekdays = {"Sunday", "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday"};
 
-        public SmartDate(int m, int d, int y) {
+        public SmartDate(int m,int d,int y) {
             if (!validate(m, d, y))
                 throw new IllegalArgumentException("Argument illegal " + m + "/" + d + "/" + y);
-            this.day = d;
-            this.year = y;
-            this.month = m;
+            this.day 	= d;
+            this.year 	= y;
+            this.month 	= m;
         }
 
         public int month() {
@@ -33,6 +39,28 @@ public class Main {
 
         public int year() {
             return year;
+        }
+
+        public String dayOfTheWeek()
+        {
+            // based on 1/1/2000
+            int totalDays;
+            if (isLeapYear()) {
+                totalDays = daysLeap[month] + day;
+            }
+            else {
+                totalDays = days[month] + day;
+            }
+
+            for (int i = 2000; i < year; i++) {
+                if (isLeapYear(i))
+                    totalDays += 366;
+                else
+                    totalDays += 365;
+            }
+
+            // 1/1/2000 is Saturday
+            return weekdays[((totalDays - 1) % 7 + 6) % 7];
         }
 
         private boolean validate(int m, int d, int y) {
@@ -52,20 +80,23 @@ public class Main {
         private boolean isLeapYear(int y) {
             if (y % 400 == 0 || (y % 4 == 0 && y % 100 != 0)) {
                 return true;
-            } else {
+            }
+            else {
                 return false;
             }
         }
 
-        private boolean isLeapYear() {
+        private boolean isLeapYear()
+        {
             return isLeapYear(year);
         }
 
-        public boolean equals(Object x) {
+        public boolean equals(Object x)
+        {
             if (this == x) return true;
             if (x == null) return false;
             if (this.getClass() != x.getClass()) return false;
-            SmartDate that = (SmartDate) x;
+            SmartDate that = (SmartDate)x;
             if (this.day != that.day) return false;
             if (this.month != that.month) return false;
             if (this.year != that.year) return false;
@@ -86,7 +117,7 @@ public class Main {
         }
     }
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         System.out.println("请输入年月日");
         Scanner scanner1 = new Scanner(System.in);
         String y = scanner1.next();
@@ -94,7 +125,9 @@ public class Main {
         String m = scanner2.next();
         Scanner scanner3 = new Scanner(System.in);
         String d = scanner3.next();
+
         SmartDate smartDate = new SmartDate(Integer.valueOf(m),Integer.valueOf(d),Integer.valueOf(y));
         System.out.println(smartDate);
+        System.out.println(smartDate.dayOfTheWeek());
     }
 }
