@@ -2,9 +2,8 @@ package com.company;
 
 import edu.princeton.cs.algs4.StdIn;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.Iterator;
-import java.lang.String;
+
 public class Main {
     public static class ResizingArrayStack<Item> implements Iterable<Item>{
         private Item[] a = (Item[]) new Object[1];
@@ -54,28 +53,26 @@ public class Main {
         ResizingArrayStack<String> ops = new ResizingArrayStack<String>();
         ResizingArrayStack<String> vals = new ResizingArrayStack<String>();
 
-        while(!StdIn.isEmpty()){
+        while(!StdIn.isEmpty()) {
             String s = StdIn.readString();
-            if(s.compareTo("=") == 0)
+            if (s.compareTo("=") == 0)
                 break;
 
-            //check full, then push
-            if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"))
-                ops.push(s);
+            if(s.equals("("));
             else
-                if(s.equals(")")){
-                    String numA = vals.pop();
-                    String sign = ops.pop();
-                    String numB = vals.pop();
+                if (s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/"))
+                    ops.push(s);
+                else
+                    if (s.equals(")")) {
+                        String numA = vals.pop();
+                        String sign = ops.pop();
+                        String numB = vals.pop();
 
-                    vals.push(numB + numA + sign")");
-                }else
-                    vals.push(s);
-
+                        vals.push(numB + numA + sign);
+                    } else
+                        vals.push(s);
         }
-
         for(String node : vals)
             System.out.println(node);
     }
-
 }
