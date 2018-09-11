@@ -1,15 +1,12 @@
 import edu.princeton.cs.algs4.Date;
 import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.Transaction;
 
 import java.util.NoSuchElementException;
 
-//1.3.16 使用1.3.1.5节中的readInts()作为模板为Date编写一个静态方法readDates()，从标准输入中读取由
-//        练习1.2.19的表格所指定的格式的多个日期并返回一个它们的数组。
+//1.3.17 为Transaction 类完成练习1.3.16
 //
-//        1.3.16 Using readInts() on page 126 as a model,write a static method readDates()
-//        for Date that reads dates from standard input in the format specified in the table
-//        on page 119 and returns an array containing them.
-//
+//1.3.17 DoExercise 1.3.16 for Transaction.
 
 public class Main {
 
@@ -62,19 +59,22 @@ public class Main {
         }
     }
 
-    public static Date[] readDates(String name){
+    public static Transaction[] readTransaction(String name){
         In in = new In(name);
-        Queue<Date> a  = new Queue<Date>(1);
+        Queue<Transaction> a  = new Queue<Transaction>(1);
 
         while (!in.isEmpty()) {
-            String temp = in.readString();
+            String nameStr = in.readString();
+            String dateStr = in.readString();
+            String feeStr  = in.readString();
+            String temp = nameStr + ' ' + dateStr + ' ' + feeStr;
 
-            Date b = new Date(temp);
+            Transaction b = new Transaction(temp);
             a.enqueue(b);
         }
 
         int N = a.length();
-        Date[] b = new Date[N];
+        Transaction[] b = new Transaction[N];
 
         for (int i = 0; i < N; i++) {
             b[i] = a.dequeue();
@@ -84,9 +84,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String file = "/Users/jack/Documents/GitHub/Algorithm-4-th/Answer/java/1.3.16/dateCase.txt";
-        Date[] a = new Date[2];
-        a = readDates(file);
+        String file = "/Users/jack/Documents/GitHub/Algorithm-4-th/Answer/java/1.3.17/TransactionCase.txt";
+        Transaction[] a = new Transaction[2];
+        a = readTransaction(file);
+
         return;
     }
 }
