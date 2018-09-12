@@ -11,27 +11,6 @@ public class Main {
             Item item;
         }
 
-//        public Node<Item> deleteLastNode(Node<Item> first) {
-//            Node<Item> currentNode = first;
-//            Node<Item> SecondLastNode = first;
-//
-//            if (first == null)
-//                return first;
-//
-//            if (currentNode.next == null) {
-//                first = null;
-//                return first;
-//            }
-//
-//            while (currentNode.next != null) {
-//                SecondLastNode = currentNode;
-//                currentNode = currentNode.next;
-//            }
-//
-//            SecondLastNode.next = null;
-//            return first;
-//        }
-
         public Node<Item> deleteIndexNode(Node<Item> first, int index) {
             int listLength = 0;
 
@@ -39,6 +18,7 @@ public class Main {
                 return null;
 
             if(index == 0) {
+                Item temp = first.item;
                 first = first.next;
                 return first;
             }
@@ -53,52 +33,37 @@ public class Main {
                 current.next = current.next.next;
 
             return first;
-//            for (Node x0 = first; x0 != null; x0 = x0.next)
-//                listLength++;
-//            if (listLength < index)
-//                return first;
-//            listLength = 0;
-//            for (Node x = first; x != null; x = x.next) {
-//                listLength ++;
-//                if (listLength == index) {
-//                    if(x.next != null) {
-//                        x.item = x.next.item;
-//                        x.next = x.next.next;
-//                    }else{
-//                        x.item = null;
-//                        x.next = null;
-//                    }
-//                    break;
-//                }
-//            }
-//            return first;
         }
 
 
         public static void main(String[] args) {
             // write your code here
             Node<String> first = new Node<>();
-            first.item = "hello";
+            Node<String> ss = new Node<>();
+            first.item = "to";
 
             Node<String> second = new Node<>();
-            second.item = "hello1";
+            second.item = "be";
 
             Node<String> three = new Node<>();
-            three.item = "hello2";
+            three.item = "or";
 
             Node<String> four = new Node<>();
-            four.item = "hello3";
+            four.item = "not";
+
+            Node<String> five = new Node<>();
+            five.item = "to";
 
             first.next  = second;
             second.next = three;
             three.next  = four;
+            four.next = five;
 
             LinkedList<String> linkedList = new LinkedList<String>();
 
-            linkedList.deleteIndexNode(first, 0);
-            //linkedList.deleteIndexNode(first, 10);
+            ss = linkedList.deleteIndexNode(first, 0);
 
-            for(Node x = first; x != null; x = x.next)
+            for(Node x = ss; x != null; x = x.next)
                 System.out.println(x.item.toString());
         }
     }
