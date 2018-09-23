@@ -9,53 +9,19 @@ import edu.princeton.cs.algs4.StdOut;
 //        except that no links are null and the value of last.next is first whenever the list is not empty.
 //        Keep only one Node instance variable (last).
 public class Main {
-
-    public static class Node<Item> {
-        Node<Item> next;
-        Item item;
-
-        private Node<Item> last;
-
-        public boolean isEmpty() {
-            return last == null;
-        }
-
-        public void equeue(Item item) {
-            Node<Item> a = new Node<>();
-            a.item = item;
-            if (isEmpty()) {
-                a.next = a;
-                last = a;
-            } else {
-                a.next = last.next;
-                last.next = a;
-            }
-        }
-
-        public Item dequeue() {
-            Item item = last.item;
-            if (last.next == last) {
-                last = null;
-            } else {
-                last.next = last.next.next;
-            }
-            return item;
-        }
-
-        public static void main(String[] args) {
-
-        }
-    }
-
     public static class CircularLinkedListQueue<Item>  {
+
         public static class Node<Item> {
             Node<Item> next;
             Item item;
         }
+
         private Node<Item> last;
+
         public boolean isEmpty() {
             return last == null;
         }
+
         public void equeue(Item item) {
             Node<Item> a = new Node<>();
             a.item = item;
@@ -67,6 +33,7 @@ public class Main {
                 last.next = a;
             }
         }
+
         public Item dequeue() {
             Item item = last.item;
             if (last.next == last) {
@@ -76,6 +43,7 @@ public class Main {
             }
             return item;
         }
+        
         public static void main(String[] args) {
             CircularLinkedListQueue<String> queue = new CircularLinkedListQueue();
             queue.equeue("09090909");
