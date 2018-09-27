@@ -43,7 +43,7 @@ public class Main {
             }
             return item;
         }
-        
+
         public static void main(String[] args) {
             CircularLinkedListQueue<String> queue = new CircularLinkedListQueue();
             queue.equeue("09090909");
