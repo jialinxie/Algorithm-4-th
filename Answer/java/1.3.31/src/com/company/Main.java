@@ -1,197 +1,225 @@
 package com.company;
 
-//1.3.31 实现一个嵌套类DoubleNode用来构造双向链表，其中每个结点都含有一个指向前驱元素的引用和一个指向后续元素的引用（如果不存在则为null）
-//        为以下任务实现若干静态方法：在头插入结点、在表尾插入结点、从表头删除结点、从表尾删除结点、在指定结点前插入新结点、在指定结点之后
-//        插入新结点、删除指定结点。
-//
-//1.3.31 Implement a nested class DoubleNode for building doubly-linked lists, where each node contains a reference to
-//        the item preceding it and the item following it in the list (null if there is no such item). Then implement
-//static methods for the following tasks: insert at the beginning, insert at the end, remove from the beginning, remove
-//        from the end, insert before a given node, insert after a given node, and remove a given node.
-
-import java.util.NoSuchElementException;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 public class Main {
 
-    public static class DoubleLinkedList<Item> {
+    public static void testInsertAsFirst(){
+        System.out.println("--------------------");
+        System.out.println("testInsertAsFirst:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsFirst(dl, "a");
+        DoubleList.insertAsFirst(dl, "b");
+        DoubleList.insertAsFirst(dl, "c");
+        DoubleList.insertAsFirst(dl, "d");
+        System.out.println("After insert a, b, c, d:");
+        DoubleList.print(dl);
+    }
 
-        public static class DoubleNode<Item> {
-            DoubleNode previous, next;
-            Item item;
+    public static void testInsertAsLast(){
+        System.out.println("---------------------");
+        System.out.println("testInsertAsLast:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsLast(dl, "a");
+        DoubleList.insertAsLast(dl, "b");
+        DoubleList.insertAsLast(dl, "c");
+        DoubleList.insertAsLast(dl, "d");
+        System.out.println("After insert a, b, c, d:");
+        DoubleList.print(dl);
+    }
 
-            //无参数的构造器
-            public DoubleNode() {
+    public static void testInsertAsFirstAndLast(){
+        System.out.println("---------------------");
+        System.out.println("testInsertAsFirstAndLast:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsLast(dl, "a");
+        DoubleList.insertAsLast(dl, "b");
+        DoubleList.insertAsLast(dl, "c");
+        DoubleList.insertAsLast(dl, "d");
+        DoubleList.insertAsFirst(dl, "1");
+        DoubleList.insertAsFirst(dl, "2");
+        DoubleList.insertAsFirst(dl, "3");
+        DoubleList.insertAsFirst(dl, "4");
+        System.out.println("After insertAsLast a, b, c, d and insertAsFirst 1, 2, 3, 4");
+        DoubleList.print(dl);
+    }
 
-            }
+    public static void testDeleteFirst(){
+        System.out.println("---------------------");
+        System.out.println("testDeleteFirst:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsLast(dl, "a");
+        DoubleList.insertAsLast(dl, "b");
+        DoubleList.insertAsLast(dl, "c");
+        DoubleList.insertAsLast(dl, "d");
+        System.out.println("list is:");
+        DoubleList.print(dl);
+        System.out.println("After deleteFirst");
+        DoubleList.deleteFirst(dl);
+        DoubleList.print(dl);
 
-            //初始化全部属性的构造器
-            public DoubleNode(Item data, DoubleNode prev, DoubleNode next) {
-                this.item = data;
-                this.previous = prev;
-                this.next = next;
-            }
+        System.out.println("After deleteFirst again:");
+        DoubleList.deleteFirst(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteFirst again:");
+        DoubleList.deleteFirst(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteFirst again:");
+        DoubleList.deleteFirst(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteFirst again:");
+        DoubleList.deleteFirst(dl);
+        DoubleList.print(dl);
+    }
+
+    public static void testDeleteLast(){
+        System.out.println("--------------------");
+        System.out.println("testDeleteLast:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsLast(dl, "a");
+        DoubleList.insertAsLast(dl, "b");
+        DoubleList.insertAsLast(dl, "c");
+        DoubleList.insertAsLast(dl, "d");
+        System.out.println("list is:");
+        DoubleList.print(dl);
+        System.out.println("After deleteLast:");
+        DoubleList.deleteLast(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteLast again:");
+        DoubleList.deleteLast(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteLast again:");
+        DoubleList.deleteLast(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteLast again:");
+        DoubleList.deleteLast(dl);
+        DoubleList.print(dl);
+
+        System.out.println("After deleteLast again:");
+        DoubleList.deleteLast(dl);
+        DoubleList.print(dl);
+    }
+
+    public static void testSearch(){
+        System.out.println("------------------");
+        System.out.println("testSearch");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsFirst(dl, "a");
+        DoubleList.insertAsFirst(dl, "b");
+        DoubleList.insertAsFirst(dl, "c");
+        DoubleList.insertAsFirst(dl, "d");
+
+        System.out.println("List is :");
+        DoubleList.print(dl);
+
+        DoubleList.DoubleNode<String> node = DoubleList.search(dl, "c");
+        System.out.println("Search c: ");
+        if(node != null){
+            System.out.println("Find " + node.item);
+        }else{
+            System.out.println("Not found");
         }
 
-        private DoubleNode head;
-        private DoubleNode tail;
-        private int size;
-
-        public boolean isEmpty() {
-            return size == 0;
+        node = DoubleList.search(dl, "d");
+        System.out.println("Search d: ");
+        if(node != null){
+            System.out.println("Find " + node.item);
+        }else{
+            System.out.println("Not found");
         }
 
-        public DoubleNode getNodeByIndex(int index) {
-            if (index < 0 || index > size - 1) {
-                throw new IndexOutOfBoundsException("线性表索引越界");
-            }
-
-            if (index < size / 2) {
-                DoubleNode current = head;
-                for (int i = 0; i < size; i++) {
-                    current = current.next;
-                }
-                return current;
-            } else {
-                DoubleNode current = tail;
-                for (int i = size - 1; i > index; i--) {
-                    current = current.previous;
-                }
-                return current;
-            }
+        node = DoubleList.search(dl, "a");
+        System.out.println("Search a: ");
+        if(node != null){
+            System.out.println("Find " + node.item);
+        }else{
+            System.out.println("Not found");
         }
 
-        //向线性链表的表头插入一个元素
-        public void addFirst(Item element) {
-            linkFirst(element);
-        }
-
-
-        //在线性链表表头插入一个元素
-        public void linkFirst(Item element) {
-            DoubleNode f = head;
-            DoubleNode newNode = new DoubleNode(element, null, f);
-            head = newNode;
-            if (f == null) {
-                tail = newNode;
-            } else {
-                f.previous = newNode;
-            }
-            size++;
-        }
-
-        //在线性链表的表尾插入一个元素
-        public void linkTail(Item element) {
-            DoubleNode t = tail;
-            DoubleNode newNode = new DoubleNode(element, t, null);
-            tail = newNode;
-            if (t == null) {
-                head = newNode;
-            } else {
-                t.next = newNode;
-            }
-            size++;
-        }
-
-        //向线性链表的表尾插入一个元素
-        public void addTail(Item element) {
-            linkTail(element);
-        }
-
-        //在线性表中某个元素前面插入一个节点
-        public void linkBefore(Item element, DoubleNode node) {
-            DoubleNode pre = node.previous;
-            DoubleNode newNode = new DoubleNode(element, pre, node);
-            node.previous = newNode;
-            if (pre == null) {
-                head = newNode;
-            } else {
-                pre.next = newNode;
-            }
-            size++;
-        }
-
-        //删除头结点
-        public void unlinkFirst(DoubleNode node) {
-            DoubleNode next = node.next;
-            node.item = null;
-            node.next = null;
-            head = next;
-            if (next == null) {
-                tail = null;
-            } else {
-                next.previous = null;
-            }
-            size--;
-        }
-
-        //移走线性链表的头结点
-        public void removeFirst() {
-            DoubleNode first = head;
-            if (first == null)
-                throw new NoSuchElementException("此节点不存在");
-            unlinkFirst(first);
-        }
-
-        //删除尾节点
-        public void unlinkLast(DoubleNode node) {
-            DoubleNode pre = node.previous;
-            node.item = null;
-            node.previous = null;
-            tail = pre;
-            if (pre == null) {
-                head = null;
-            } else {
-                pre.next = null;
-            }
-            size--;
-        }
-
-        //移走线性链表的尾节点
-        public void removeTail() {
-            DoubleNode last = tail;
-            if (last == null)
-                throw new NoSuchElementException("此节点不存在");
-            unlinkLast(last);
-        }
-
-        //移走线性表中的任意一个节点
-        public void remove(int index) {
-            if (index < 0 || index > size - 1) {
-                throw new IndexOutOfBoundsException("线性表越界");
-            }
-            unlink(getNodeByIndex(index));
-        }
-
-        //删除线性表中任意一个元素
-        public void unlink(DoubleNode node) {
-            DoubleNode pre = node.previous;
-            DoubleNode next = node.next;
-            node.item = null;
-            if (pre == null) {
-                head = next;
-            } else {
-                pre.next = next;
-                node.previous = null;
-            }
-            if (next == null) {
-                tail = pre;
-            } else {
-                next.previous = pre;
-                node.next = null;
-            }
-            size--;
-        }
-
-        public static void main(String[] args) {
-            // write your code here
-            DoubleNode first    = new DoubleNode("to", null, null);
-            DoubleNode second   = new DoubleNode("be", first, null);
-            DoubleNode third    = new DoubleNode("or", second, null);
-            DoubleNode forth    = new DoubleNode("not", third, null);
-
-//            this.head = first;
-//            this.tail = forth;
+        node = DoubleList.search(dl, "x");
+        System.out.println("Search x: ");
+        if(node != null){
+            System.out.println("Find " + node.item);
+        }else{
+            System.out.println("Not found");
         }
     }
 
+    public static void testInsertBeforeAndAfter(){
+        System.out.println("-------------------");
+        System.out.println("testInsertBeforeAndAfter:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsLast(dl, "a");
+        DoubleList.insertAsLast(dl, "b");
+        DoubleList.insertAsLast(dl, "c");
+        DoubleList.insertAsLast(dl, "d");
+
+        System.out.println("List is :");
+        DoubleList.print(dl);
+
+        DoubleList.DoubleNode<String> node = DoubleList.search(dl, "c");
+        DoubleList.insertAfter(dl, node, "C");
+        System.out.println("After insert C after c: ");
+        DoubleList.print(dl);
+
+        node = DoubleList.search(dl, "d");
+        DoubleList.insertAfter(dl, node, "D");
+        System.out.println("After insert D after d:");
+        DoubleList.print(dl);
+
+        node = DoubleList.search(dl, "c");
+        DoubleList.insertBefore(dl, node, "B");
+        System.out.println("After insert B before c:");
+        DoubleList.print(dl);
+
+        node = DoubleList.search(dl, "a");
+        DoubleList.insertBefore(dl, node, "A");
+        System.out.println("After insert A before a:");
+        DoubleList.print(dl);
+    }
+
+    public static void testDeleteNode(){
+        System.out.println("-----------------");
+        System.out.println("testDeleteNode:");
+        DoubleList<String> dl = new DoubleList<String>();
+        DoubleList.insertAsLast(dl, "a");
+        DoubleList.insertAsLast(dl, "b");
+        DoubleList.insertAsLast(dl, "c");
+        DoubleList.insertAsLast(dl, "d");
+
+        System.out.println("List is :");
+        DoubleList.print(dl);
+
+        DoubleList.DoubleNode<String> node = DoubleList.search(dl, "c");
+        DoubleList.deleteNode(dl, node);
+        System.out.println("After delete c:");
+        DoubleList.print(dl);
+
+        node = DoubleList.search(dl, "a");
+        DoubleList.deleteNode(dl, node);
+        System.out.println("After delete a:");
+        DoubleList.print(dl);
+
+        node = DoubleList.search(dl, "d");
+        DoubleList.deleteNode(dl, node);
+        System.out.println("After delete d:");
+        DoubleList.print(dl);
+    }
+
+    public static void main(String[] args){
+        testInsertAsFirst();
+        testInsertAsLast();
+        testInsertAsFirstAndLast();
+        testDeleteFirst();
+        testDeleteLast();
+        testSearch();
+        testInsertBeforeAndAfter();
+        testDeleteNode();
+    }
 }
