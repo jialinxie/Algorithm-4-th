@@ -39,7 +39,7 @@ public class RandomQueue<Item> implements Iterable<Item>{
 
         int index = StdRandom.uniform(N);
         Item x = a[index];
-        a[index] = a[--N];
+        a[index] = a[N--];
         a[N] = null;
         return x;
     }
