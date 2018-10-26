@@ -4,7 +4,9 @@
 #include "Stack.h"
 
 using namespace std;
-
+//test case:
+//input: 45*    45+     45-     45/
+//output:20     9       1       1
 int main(void){
 map<char, function<int(int, int)>> binops = {
         {'+', std::plus<int>()},
